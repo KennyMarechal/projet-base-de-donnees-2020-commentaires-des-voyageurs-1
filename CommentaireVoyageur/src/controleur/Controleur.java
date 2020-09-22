@@ -1,6 +1,7 @@
 package controleur;
 
 import vue.Vue;
+import vue.VueAjouterCommentaire;
 
 
 public class Controleur {
@@ -9,7 +10,7 @@ public class Controleur {
 	{
 		//TODO
 		/*La vue principale c'est la vue qui comporte les listes*/
-		return null;
+		return VueAjouterCommentaire.getInstance();
 	}
 
 }

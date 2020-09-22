@@ -10,9 +10,11 @@ public abstract class Navigateur extends Application{ // Application de javafx e
 		
 	private static Navigateur instance = null;
 	public static Navigateur getInstance() {return instance;}	
+	
 	protected Navigateur()
 	{
 		instance = this;
+		VueAjouterCommentaire.getInstance().activercontroles();
 		//TODO instance de toutes les vues et la navigation
 
 	}
