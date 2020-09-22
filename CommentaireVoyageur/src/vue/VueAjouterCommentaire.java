@@ -4,15 +4,15 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 
-public class VueAjouterCommentaire extends Vue {
+public class VueAjouterCommentaire extends Vue{
 	
-	public static VueAjouterCommentaire intance;
+	public static VueAjouterCommentaire instance;
 	
 	/***
 	 * Singleton de la vueAjouterCommentaire
 	 * @return intance de la vue ajouter commentaire
 	 */
-	public static VueAjouterCommentaire getInstance() {if(null == intance)intance = new VueAjouterCommentaire(); return intance;}
+	public static VueAjouterCommentaire getInstance() {if(null == instance)instance = new VueAjouterCommentaire(); return instance;}
 	
 	protected Button actionRetour;
 	protected Button actionEnvoyer;
