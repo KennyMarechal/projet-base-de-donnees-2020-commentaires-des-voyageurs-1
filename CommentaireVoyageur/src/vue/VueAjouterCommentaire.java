@@ -3,7 +3,7 @@ package vue;
 import com.sun.media.jfxmedia.logging.Logger;
 
 import controleur.Controleur;
-import donnee.Commentaire;
+import modele.Commentaire;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
