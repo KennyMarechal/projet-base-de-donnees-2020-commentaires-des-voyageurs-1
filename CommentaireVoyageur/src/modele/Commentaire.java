@@ -1,4 +1,4 @@
-package donnee;
+package modele;
 
 import java.util.Date;
 
