@@ -3,7 +3,6 @@ package vue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
-import java.awt.Button;
 
 public class VueAjouterCommentaire extends Vue{
 	
@@ -42,5 +41,4 @@ public class VueAjouterCommentaire extends Vue{
 				System.out.println("Clic sur ENVOYER VueAjouterCommentaire()");
 			}});
 	}
-
 }

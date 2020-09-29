@@ -1,5 +1,7 @@
 package vue;
 
+import com.sun.media.jfxmedia.logging.Logger;
+
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -13,10 +15,12 @@ public abstract class Navigateur extends Application{ // Application de javafx e
 	
 	protected Navigateur()
 	{
-		instance = this;
-		VueAjouterCommentaire.getInstance().activercontroles();
 		//TODO instance de toutes les vues et la navigation
-
+		instance = this;
+		Logger.setLevel(Logger.INFO);
+		VueAccueilCommentaire.getInstance().activerControles();
+		VueAjouterCommentaire.getInstance().activercontroles();
+		VueAccueilCommentaire.getInstance().controleur = VueAjouterCommentaire.getInstance().controleur;
 	}
 	
 	public void afficherVue(Vue vue)

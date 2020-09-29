@@ -1,6 +1,8 @@
 package vue;
 
-import java.awt.Button;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.Button;
 
 public class VueAccueilCommentaire extends Vue {
 	
@@ -14,5 +16,17 @@ public class VueAccueilCommentaire extends Vue {
 		super("vue_accueil_commentaire.fxml");
 	}
 	
-
+	/**
+	 * Permet de gerer les controles
+	 */
+	public void activercontroles() {
+		super.activerControles();
+		actionLaisserCommentaire = (Button)lookup("#vueAccueilActionLaisserCommentaire");
+		
+		actionLaisserCommentaire.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent arg0) {
+				System.out.println("Clic sur actionLaisserCommentaire VueAcceuilCommentaire()");
+			}});
+	}
 }
