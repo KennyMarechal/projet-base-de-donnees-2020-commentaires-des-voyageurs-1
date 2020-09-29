@@ -1,5 +1,6 @@
 package vue;
 
+
 import com.sun.media.jfxmedia.logging.Logger;
 
 import controleur.Controleur;
