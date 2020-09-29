@@ -32,6 +32,11 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -41,7 +46,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" stylesheets="@decoration/commentaire.css">
          <children>
@@ -60,7 +65,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button id="Laisser_commentaire" layoutX="98.0" layoutY="354.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="421.0" text="Laisser nous un commentaire" />
+            <Button id="vue_accueil_action_Laisser_commentaire" layoutX="98.0" layoutY="354.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="421.0" text="Laisser nous un commentaire" />
             <VBox layoutX="47.0" layoutY="474.0" prefHeight="289.0" prefWidth="516.0">
                <children>
                   <Pane prefHeight="35.0" prefWidth="516.0" styleClass="commentaire" stylesheets="@decoration/commentaire.css">
