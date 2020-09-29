@@ -37,9 +37,9 @@
                         <Font name="Times New Roman Bold Italic" size="25.0" />
                      </font>
                   </Label>
-                  <TextArea id="VueAjouterCommentaireTextAreaCommentaire" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField id="VueAjouterCommentaireTextFieldNom" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField id="VueAjouterCommentaireTextFieldTitre" GridPane.columnIndex="1" />
+                  <TextArea id="vue-ajouter-commentaire-textArea-commentaire" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField id="vue-ajouter-commentaire-textField-nom" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField id="vue-ajouter-commentaire-textField-titre" GridPane.columnIndex="1" />
                </children>
             </GridPane>
             <Button id="vue-ajouter-commentaire-action-envoyer" fx:id="VueAjouterCommentaireActionEnvoyer" layoutX="235.0" layoutY="705.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="130.0" text="Envoyer" />
