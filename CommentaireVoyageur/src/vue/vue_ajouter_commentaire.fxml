@@ -42,13 +42,13 @@
                   <TextField id="VueAjouterCommentaireTextFieldTitre" GridPane.columnIndex="1" />
                </children>
             </GridPane>
-            <Button id="VueAjouterCommentaireActionEnvoyer" layoutX="235.0" layoutY="705.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="130.0" text="Envoyer" />
+            <Button id="vue-ajouter-commentaire-action-envoyer" fx:id="VueAjouterCommentaireActionEnvoyer" layoutX="235.0" layoutY="705.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="130.0" text="Envoyer" />
             <ImageView id="VueAjouterCommentaireImage" fitHeight="160.0" fitWidth="493.0" layoutX="71.0" layoutY="14.0">
                <image>
                   <Image url="@../../../CommentaireVoyageur/image/image_bateau.PNG" />
                </image>
             </ImageView>
-            <Button id="VueAjouterCommentaireActionRetour" layoutY="32.0" mnemonicParsing="false" text="BACK" />
+            <Button id="vue-ajouter-commentaire-action-retour" fx:id="VueAjouterCommentaireActionRetour" layoutY="32.0" mnemonicParsing="false" text="BACK" />
             <Label layoutX="121.0" layoutY="193.0" text="Ajouter un Commentaire" textFill="#db0d0d">
                <font>
                   <Font size="36.0" />

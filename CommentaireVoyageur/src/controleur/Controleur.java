@@ -13,5 +13,4 @@ public class Controleur {
 		return VueAccueilCommentaire.getInstance();
 		//return VueAjouterCommentaire.getInstance();
 	}
-
 }

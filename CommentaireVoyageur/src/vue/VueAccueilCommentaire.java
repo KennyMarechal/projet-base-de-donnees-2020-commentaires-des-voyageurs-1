@@ -1,5 +1,7 @@
 package vue;
 
+import com.sun.media.jfxmedia.logging.Logger;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -19,13 +21,14 @@ public class VueAccueilCommentaire extends Vue {
 	/**
 	 * Permet de gerer les controles
 	 */
-	public void activercontroles() {
+	public void activerControles(){
 		super.activerControles();
-		actionLaisserCommentaire = (Button)lookup("#vueAccueilActionLaisserCommentaire");
+		actionLaisserCommentaire = (Button)lookup("#vue-accueil-action-laisser-commentaire");
 		
 		actionLaisserCommentaire.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
+				Logger.logMsg(Logger.INFO, "Clic sur actionLaisserCommentaire VueAcceuilCommentaire()");
 				System.out.println("Clic sur actionLaisserCommentaire VueAcceuilCommentaire()");
 			}});
 	}

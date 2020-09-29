@@ -65,7 +65,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button id="vueAccueilActionLaisserCommentaire" layoutX="98.0" layoutY="354.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="421.0" text="Laisser nous un commentaire" />
+            <Button id="vue-accueil-action-laisser-commentaire" fx:id="vueAccueilActionLaisserCommentaire" layoutX="98.0" layoutY="354.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="421.0" text="Laisser nous un commentaire" />
             <VBox layoutX="47.0" layoutY="474.0" prefHeight="289.0" prefWidth="516.0">
                <children>
                   <Pane prefHeight="35.0" prefWidth="516.0" styleClass="commentaire" stylesheets="@decoration/commentaire.css">

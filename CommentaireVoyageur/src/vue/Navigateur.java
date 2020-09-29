@@ -19,13 +19,13 @@ public abstract class Navigateur extends Application{ // Application de javafx e
 		instance = this;
 		Logger.setLevel(Logger.INFO);
 		VueAccueilCommentaire.getInstance().activerControles();
-		VueAjouterCommentaire.getInstance().activercontroles();
+		VueAjouterCommentaire.getInstance().activerControles();
 		VueAccueilCommentaire.getInstance().controleur = VueAjouterCommentaire.getInstance().controleur;
 	}
 	
 	public void afficherVue(Vue vue)
 	{
 		stade.setScene(vue);
-		stade.show();				
+		stade.show();
 	}
 }
