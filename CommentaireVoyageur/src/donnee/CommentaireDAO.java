@@ -1,6 +1,9 @@
 package donnee;
 
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,15 +39,35 @@ public class CommentaireDAO
 		return listeCommentaires;
 	}
 	
-	//Lister les dix derniers commmentaires entrés (en se basant sur la date)
+	//Lister les dix derniers commmentaires entrés
 	public List<Commentaire> listerDerniersCommentaires()
 	{
-		//Connexion BDD
-		//SELECT titre, date FROM commentaire ORDER by date DESC
-		//ajouter chaque commentaire à la liste
-		//retourner la liste
+		List<Commentaire> listeCommentaires = new ArrayList<Commentaire>();
+		Connection connection = BaseDeDonnees.getInstance().getConnection();
+		try
+		{
+			PreparedStatement requeteListerCommentaires = connection.prepareStatement("SELECT titre, date FROM commentaire ORDER BY id DESC LIMIT 10");
+			ResultSet curseurListeCommentaires = requeteListerCommentaires.executeQuery();
+			
+			while(curseurListeCommentaires.next())
+			{
+				String titre = curseurListeCommentaires.getString("titre");
+				Date date = curseurListeCommentaires.getDate("date");
+				
+				Commentaire commentaire = new Commentaire();
+				commentaire.setTitre(titre);
+				commentaire.setDate(date);
+				listeCommentaires.add(commentaire);
+			}
+			
+			return listeCommentaires;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
 		return null;
-
 	}
 	
 	public Commentaire detaillerCommentaire(int id)
@@ -61,6 +84,8 @@ public class CommentaireDAO
 		//Connexion BDD
 		//INSERT INTO commentaire (titre, auteur, contenu, date) VALUES (?,?,?,?)
 		//Executer l'insertion dans la BDD
+		
+		
 	}
 	
 }

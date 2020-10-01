@@ -17,7 +17,7 @@ public class Controleur {
 	
 	protected static CommentaireDAO commentaireDAO = new CommentaireDAO();
 	
-	protected static List<Commentaire> listeCommentairesMookup;
+	//protected static List<Commentaire> listeCommentairesMockup;
 	
 	public Controleur() {
 		Logger.logMsg(Logger.INFO, "new Controleur()");
@@ -26,7 +26,7 @@ public class Controleur {
 	public static Vue selectionnerVuePrincipale() 
 	{ 
 		/*La vue principale c'est la vue qui comporte les listes*/
-		VueAccueilCommentaire.getInstance().afficherCommentaire(afficherListeCommentaire());
+		VueAccueilCommentaire.getInstance().afficherCommentaire(commentaireDAO.listerDerniersCommentaires());
 		return VueAccueilCommentaire.getInstance();
 		//return VueAjouterCommentaire.getInstance();
 	}
@@ -45,8 +45,5 @@ public class Controleur {
 		commentaireDAO.enregistrerCommentaire(commentaire);
 	}
 	
-	public static List<Commentaire> afficherListeCommentaire() {
-		listeCommentairesMookup = commentaireDAO.listerMockups();
-		return listeCommentairesMookup;	
-	}
+
 }

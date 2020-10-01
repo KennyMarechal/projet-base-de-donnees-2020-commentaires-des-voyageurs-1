@@ -1,6 +1,7 @@
 package vue;
 
 
+import java.sql.Date;
 import java.util.List;
 
 import com.sun.media.jfxmedia.logging.Logger;
@@ -17,7 +18,6 @@ import modele.Commentaire;
 public class VueAccueilCommentaire extends Vue {
 	
 	public static VueAccueilCommentaire instance;
-	
 	public static VueAccueilCommentaire getInstance() {if(null == instance)instance = new VueAccueilCommentaire(); return instance;}
 		
 	protected Controleur controleur;
@@ -44,17 +44,13 @@ public class VueAccueilCommentaire extends Vue {
 	}
 	
 	public void afficherCommentaire(List<Commentaire> listeCommentaire) {
-		
 		ListView<String> listeCommentaireListView = (ListView<String>)lookup("#listView");
-		
 		ObservableList<String> listeAfficher = FXCollections.observableArrayList();
-		
-		for(Commentaire commentaire:listeCommentaire) {
-			
-			String afficheString = commentaire.getDate().toString()+" - "+ commentaire.getTitre();
-			   
+				
+		for(Commentaire commentaire : listeCommentaire) {
+			String afficheString = commentaire.getDate() +" - " + commentaire.getTitre();
 			listeAfficher.add(afficheString);
-		   }
+		}
 		
 		listeCommentaireListView.setItems(listeAfficher);
 	}
