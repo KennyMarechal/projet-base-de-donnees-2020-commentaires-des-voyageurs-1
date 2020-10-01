@@ -1,12 +1,18 @@
 package vue;
 
 
+import java.util.List;
+
 import com.sun.media.jfxmedia.logging.Logger;
 
 import controleur.Controleur;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import modele.Commentaire;
 
 public class VueAccueilCommentaire extends Vue {
 	
@@ -35,5 +41,21 @@ public class VueAccueilCommentaire extends Vue {
 				Logger.logMsg(Logger.INFO, "Clic sur actionLaisserCommentaire VueAcceuilCommentaire()");
 				controleur.notifierNavigationVueAjoutCommentaire();
 			}});
+	}
+	
+	public void afficherCommentaire(List<Commentaire> listeCommentaire) {
+		
+		ListView<String> listeCommentaireListView = (ListView<String>)lookup("#listView");
+		
+		ObservableList<String> listeAfficher = FXCollections.observableArrayList();
+		
+		for(Commentaire commentaire:listeCommentaire) {
+			
+			String afficheString = commentaire.getDate().toString()+" - "+ commentaire.getTitre();
+			   
+			listeAfficher.add(afficheString);
+		   }
+		
+		listeCommentaireListView.setItems(listeAfficher);
 	}
 }
