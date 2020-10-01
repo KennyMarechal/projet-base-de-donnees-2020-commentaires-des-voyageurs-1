@@ -51,11 +51,11 @@ public class VueAjouterCommentaire extends Vue{
 			@Override
 			public void handle(ActionEvent arg0) {
 				Logger.logMsg(Logger.INFO, "Clic sur ENVOYER VueAjouterCommentaire()");
-				controleur.notifierActionEnvoyerAjouterCommentaire();
+				controleur.notifierActionEnvoyerAjouterCommentaire(lireValeurCommentaire());
 			}});
 	}
 	
-	public Commentaire lireValeurCommentaire() {
+	protected Commentaire lireValeurCommentaire() {
 		Commentaire commentaire = new Commentaire();
 		
 		commentaire.setTitre(textFieldTitreCommentaire.getText());

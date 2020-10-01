@@ -39,9 +39,10 @@ public class Controleur {
 		Navigateur.getInstance().afficherVue(VueAccueilCommentaire.getInstance());
 	}
 	
-	public void notifierActionEnvoyerAjouterCommentaire() {
+	public void notifierActionEnvoyerAjouterCommentaire(Commentaire commentaire) {
 		Logger.logMsg(Logger.INFO, "Clic sur ENVOYER reception dans le controleur");
-		//TODO enregistrer les infos dans le DAO
+		// enregistrer les infos dans le DAO
+		commentaireDAO.enregistrerCommentaire(commentaire);
 	}
 	
 	public static List<Commentaire> afficherListeCommentaire() {

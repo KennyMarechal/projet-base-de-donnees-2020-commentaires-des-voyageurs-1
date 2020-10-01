@@ -36,7 +36,6 @@ public class CommentaireDAO
 		return listeCommentaires;
 	}
 	
-	
 	//Lister les dix derniers commmentaires entrés (en se basant sur la date)
 	public List<Commentaire> listerDerniersCommentaires()
 	{
