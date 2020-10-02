@@ -47,15 +47,17 @@ public class CommentaireDAO
 		Connection connection = BaseDeDonnees.getInstance().getConnection();
 		try
 		{
-			PreparedStatement requeteListerCommentaires = connection.prepareStatement("SELECT titre, date FROM commentaire ORDER BY id DESC LIMIT 10");
+			PreparedStatement requeteListerCommentaires = connection.prepareStatement("SELECT id, titre, date FROM commentaire ORDER BY id DESC LIMIT 10");
 			ResultSet curseurListeCommentaires = requeteListerCommentaires.executeQuery();
 			
 			while(curseurListeCommentaires.next())
 			{
+				int id = curseurListeCommentaires.getInt("id");
 				String titre = curseurListeCommentaires.getString("titre");
 				Timestamp date = curseurListeCommentaires.getTimestamp("date");
 				
 				Commentaire commentaire = new Commentaire();
+				commentaire.setId(id);
 				commentaire.setTitre(titre);
 				commentaire.setDate(date);
 				listeCommentaires.add(commentaire);

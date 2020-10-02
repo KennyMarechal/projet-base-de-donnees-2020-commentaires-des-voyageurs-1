@@ -10,6 +10,7 @@ import controleur.Controleur;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
@@ -48,10 +49,19 @@ public class VueAccueilCommentaire extends Vue {
 		ObservableList<String> listeAfficher = FXCollections.observableArrayList();
 				
 		for(Commentaire commentaire : listeCommentaire) {
-			String afficheString = commentaire.getDate() +" - " + commentaire.getTitre();
+			String afficheString =  commentaire.getId() + " " + commentaire.getDate() + " - " + commentaire.getTitre();
 			listeAfficher.add(afficheString);
 		}
 		
 		listeCommentaireListView.setItems(listeAfficher);
+		listeCommentaireListView.setOnMouseClicked(new EventHandler<Event>()
+		{
+			@Override
+			public void handle(Event arg0)
+			{
+				String[] chainesItem = listeCommentaireListView.getSelectionModel().getSelectedItem().split(" ");
+				controleur.notifierNavigationVueCommentaires(chainesItem[0]);
+			}
+		});
 	}
 }

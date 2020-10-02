@@ -20,6 +20,7 @@ public abstract class Navigateur extends Application{ // Application de javafx e
 		Logger.setLevel(Logger.INFO);
 		VueAccueilCommentaire.getInstance().activerControles();
 		VueAjouterCommentaire.getInstance().activerControles();
+		VueCommentaires.getInstance().activerControles();
 		VueAccueilCommentaire.getInstance().controleur = VueAjouterCommentaire.getInstance().controleur;
 	}
 	

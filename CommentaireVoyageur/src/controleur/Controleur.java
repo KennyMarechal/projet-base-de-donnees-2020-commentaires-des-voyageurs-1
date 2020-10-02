@@ -8,6 +8,7 @@ import vue.Navigateur;
 import vue.Vue;
 import vue.VueAccueilCommentaire;
 import vue.VueAjouterCommentaire;
+import vue.VueCommentaires;
 //import vue.VueAjouterCommentaire;
 
 
@@ -42,6 +43,15 @@ public class Controleur {
 		// enregistrer les infos dans le DAO
 		commentaireDAO.enregistrerCommentaire(commentaire);
 		Navigateur.getInstance().afficherVue(VueAccueilCommentaire.getInstance());
+	}
+
+	public void notifierNavigationVueCommentaires(String id)
+	{
+		Logger.logMsg(Logger.INFO, id);
+		Commentaire commentaire = commentaireDAO.detaillerCommentaire(Integer.parseInt(id));
+		
+		VueCommentaires.getInstance().afficherInfosCommentaire(commentaire);
+		Navigateur.getInstance().afficherVue(VueCommentaires.getInstance());
 	}
 	
 
