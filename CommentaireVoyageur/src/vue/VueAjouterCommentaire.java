@@ -1,6 +1,5 @@
 package vue;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 
 import com.sun.media.jfxmedia.logging.Logger;

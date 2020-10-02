@@ -1,9 +1,9 @@
 package donnee;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -73,9 +73,34 @@ public class CommentaireDAO
 	
 	public Commentaire detaillerCommentaire(int id)
 	{
-		//Connexion BDD
-		//SELECT titre, auteur, contenu, date FROM commentaire
-		//Creer et retourner l'objet commentaire
+		Connection connection = BaseDeDonnees.getInstance().getConnection();
+		
+		try 
+		{
+			PreparedStatement requteCommentaire = connection.prepareStatement("SELECT titre, auteur, contenu, date FROM commentaire WHERE id = ?");
+						
+			requteCommentaire.setInt(1, id);
+			ResultSet curseur = requteCommentaire.executeQuery();
+			curseur.next();
+			
+			String titre = curseur.getString("titre");
+			String auteur = curseur.getString("auteur");
+			String contenu = curseur.getString("contenu");
+			Timestamp annee = curseur.getTimestamp("date");
+			
+			Commentaire commentaire = new Commentaire();
+			commentaire.setId(id);
+			commentaire.setTitre(titre);
+			commentaire.setAuteur(auteur);
+			commentaire.setContenu(contenu);
+			commentaire.setDate(annee);
+			
+			return commentaire;
+		} 
+		catch (SQLException e)
+		{
+				e.printStackTrace();
+		}
 		
 		return null;
 	}
