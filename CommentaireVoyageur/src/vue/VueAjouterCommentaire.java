@@ -1,5 +1,8 @@
 package vue;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+
 import com.sun.media.jfxmedia.logging.Logger;
 
 import controleur.Controleur;
@@ -61,7 +64,8 @@ public class VueAjouterCommentaire extends Vue{
 		commentaire.setTitre(textFieldTitreCommentaire.getText());
 		commentaire.setAuteur(textFieldNomCommentaire.getText());
 		commentaire.setContenu(textAreaCommentire.getText());
-		
+		commentaire.setDate(new Timestamp(System.currentTimeMillis()));
+				
 		return commentaire;
 	}
 }

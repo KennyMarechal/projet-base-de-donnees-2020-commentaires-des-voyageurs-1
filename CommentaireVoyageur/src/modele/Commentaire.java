@@ -1,6 +1,6 @@
 package modele;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Commentaire
 {
@@ -8,7 +8,7 @@ public class Commentaire
 	protected String titre;
 	protected String auteur;
 	protected String contenu;
-	protected Date date;
+	protected Timestamp date;
 	
 	public int getId() {
 		return id;
@@ -34,10 +34,10 @@ public class Commentaire
 	public void setContenu(String contenu) {
 		this.contenu = contenu;
 	}
-	public Date getDate() {
+	public Timestamp getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(Timestamp date) {
 		this.date = date;
 	}
 }

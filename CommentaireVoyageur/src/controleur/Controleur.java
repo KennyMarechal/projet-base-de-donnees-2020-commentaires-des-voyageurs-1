@@ -43,6 +43,7 @@ public class Controleur {
 		Logger.logMsg(Logger.INFO, "Clic sur ENVOYER reception dans le controleur");
 		// enregistrer les infos dans le DAO
 		commentaireDAO.enregistrerCommentaire(commentaire);
+		Navigateur.getInstance().afficherVue(VueAccueilCommentaire.getInstance());
 	}
 	
 

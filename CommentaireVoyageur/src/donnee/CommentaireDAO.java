@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class CommentaireDAO
 			commentaire.setTitre(titres[i]);
 			commentaire.setAuteur(auteurs[i]);
 			commentaire.setContenu(contenu);
-			commentaire.setDate(Date.valueOf(dates[i]));
+			commentaire.setDate(Timestamp.valueOf(dates[i]));
 			listeCommentaires.add(commentaire);
 		}
 		
@@ -52,7 +53,7 @@ public class CommentaireDAO
 			while(curseurListeCommentaires.next())
 			{
 				String titre = curseurListeCommentaires.getString("titre");
-				Date date = curseurListeCommentaires.getDate("date");
+				Timestamp date = curseurListeCommentaires.getTimestamp("date");
 				
 				Commentaire commentaire = new Commentaire();
 				commentaire.setTitre(titre);
@@ -81,11 +82,21 @@ public class CommentaireDAO
 	
 	public void enregistrerCommentaire(Commentaire commentaire)
 	{
-		//Connexion BDD
-		//INSERT INTO commentaire (titre, auteur, contenu, date) VALUES (?,?,?,?)
-		//Executer l'insertion dans la BDD
-		
-		
+		Connection connection = BaseDeDonnees.getInstance().getConnection();
+		try
+		{
+			PreparedStatement requeteEnregistrerCommentaire =
+					connection.prepareStatement("INSERT INTO commentaire (titre, auteur, contenu, date) VALUES (?, ?, ?, ?)");
+			requeteEnregistrerCommentaire.setString(1, commentaire.getTitre());
+			requeteEnregistrerCommentaire.setString(2, commentaire.getAuteur());
+			requeteEnregistrerCommentaire.setString(3, commentaire.getContenu());
+			requeteEnregistrerCommentaire.setTimestamp(4, commentaire.getDate());
+			requeteEnregistrerCommentaire.execute();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 	
 }
