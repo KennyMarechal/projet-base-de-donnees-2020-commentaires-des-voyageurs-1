@@ -19,7 +19,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Button id="vue-commentaire-action-retour" fx:id="vueAccueilActionLaisserCommentaire" layoutY="55.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="73.0" text="BACK" />
+      <Button id="vue-commentaire-action-retour" fx:id="vueAccueilActionLaisserCommentaire" layoutX="245.0" layoutY="660.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="127.0" text="BACK" />
       <ImageView id="VueAjouterCommentaireImage" fitHeight="165.0" fitWidth="485.0" layoutX="81.0" layoutY="14.0">
          <image>
             <Image url="@../../image/image_bateau.PNG" />
