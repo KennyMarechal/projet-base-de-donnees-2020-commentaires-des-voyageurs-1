@@ -1,6 +1,8 @@
 package vue;
 
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.sql.Date;
 import java.util.List;
 
@@ -14,6 +16,10 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import modele.Commentaire;
 
 public class VueAccueilCommentaire extends Vue {
@@ -42,6 +48,33 @@ public class VueAccueilCommentaire extends Vue {
 				Logger.logMsg(Logger.INFO, "Clic sur actionLaisserCommentaire VueAcceuilCommentaire()");
 				controleur.notifierNavigationVueAjoutCommentaire();
 			}});
+		
+		
+		System.out.println(System.getProperty("user.dir"));
+		
+
+		MenuButton menuOptions = (MenuButton)lookup("#vue-accueil-menu-options");
+		Image imageMenuBurger = new Image("file:src/vue/decoration/menu-burger.png", 20, 20, true, true);
+		menuOptions.setGraphic(new ImageView(imageMenuBurger));
+		
+		ObservableList<MenuItem> options = menuOptions.getItems();
+		
+		for (MenuItem menuItem : options)
+		{
+			menuItem.setOnAction(new EventHandler<ActionEvent>() 
+			{
+				@Override
+				public void handle(ActionEvent e) 
+				{
+					MenuItem source = (MenuItem)e.getSource();
+					
+					if(source.getId().equals("vue-accueil-action-synchroniser"))
+						controleur.notifierSynchronisation();
+				}
+			});
+		}
+		
+
 	}
 	
 	public void afficherCommentaire(List<Commentaire> listeCommentaire) {

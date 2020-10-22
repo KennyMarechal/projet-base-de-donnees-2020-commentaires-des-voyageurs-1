@@ -27,7 +27,7 @@ public class BaseDeDonnees
 		}
 		
 		try {
-			connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/croisiere", "postgres", "");
+			connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/croisiere", "postgres", "postRoot");
 		}
 		catch (SQLException e) {
 			e.printStackTrace();

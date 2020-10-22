@@ -54,6 +54,13 @@ public class Controleur {
 		VueCommentaires.getInstance().afficherInfosCommentaire(commentaire);
 		Navigateur.getInstance().afficherVue(VueCommentaires.getInstance());
 	}
+
+	public void notifierSynchronisation()
+	{
+		// TODO Auto-generated method stub
+		Logger.logMsg(Logger.INFO, "Clic sur Synchroniser");
+
+	}
 	
 
 }
