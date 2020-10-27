@@ -41,7 +41,7 @@ public class Controleur {
 	public void notifierActionEnvoyerAjouterCommentaire(Commentaire commentaire) {
 		Logger.logMsg(Logger.INFO, "Clic sur ENVOYER reception dans le controleur");
 		// enregistrer les infos dans le DAO
-		commentaireDAO.enregistrerCommentaire(commentaire);
+		commentaireDAO.ajouterCommentaire(commentaire);
 		VueAccueilCommentaire.getInstance().afficherCommentaire(commentaireDAO.listerDerniersCommentaires());
 		Navigateur.getInstance().afficherVue(VueAccueilCommentaire.getInstance());
 	}
@@ -49,10 +49,10 @@ public class Controleur {
 	public void notifierNavigationVueCommentaires(String id)
 	{
 		Logger.logMsg(Logger.INFO, id);
-		Commentaire commentaire = commentaireDAO.detaillerCommentaire(Integer.parseInt(id));
+		//Commentaire commentaire = commentaireDAO.detaillerCommentaire(Integer.parseInt(id));
 		
-		VueCommentaires.getInstance().afficherInfosCommentaire(commentaire);
-		Navigateur.getInstance().afficherVue(VueCommentaires.getInstance());
+		//VueCommentaires.getInstance().afficherInfosCommentaire(commentaire);
+		//Navigateur.getInstance().afficherVue(VueCommentaires.getInstance());
 	}
 
 	public void notifierSynchronisation()

@@ -82,7 +82,7 @@ public class VueAccueilCommentaire extends Vue {
 		ObservableList<String> listeAfficher = FXCollections.observableArrayList();
 				
 		for(Commentaire commentaire : listeCommentaire) {
-			String afficheString =  commentaire.getId() + " " + commentaire.getDate() + " - " + commentaire.getTitre();
+			String afficheString = commentaire.getDate() + " - " + commentaire.getTitre();
 			listeAfficher.add(afficheString);
 		}
 		
