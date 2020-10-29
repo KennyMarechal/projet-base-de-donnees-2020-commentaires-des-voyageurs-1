@@ -25,6 +25,8 @@ public class VueAccueilCommentaire extends Vue {
 		
 	protected Controleur controleur;
 	
+	private final static int LIMITE_COMMENTAIRES_LISTE = 10;
+	
 	private VueAccueilCommentaire () {
 		super("vue_accueil_commentaire.fxml");
 		super.controleur = this.controleur = new Controleur();
@@ -76,10 +78,15 @@ public class VueAccueilCommentaire extends Vue {
 	public void afficherCommentaire(List<Commentaire> listeCommentaire) {
 		ListView<String> listeCommentaireListView = (ListView<String>)lookup("#listView");
 		ObservableList<String> listeAfficher = FXCollections.observableArrayList();
-				
-		for(Commentaire commentaire : listeCommentaire) {
+		
+		//Définit une limite selon la taille de la liste en BDD et la taille donnée par l'application
+		int limite = (listeCommentaire.size() >= LIMITE_COMMENTAIRES_LISTE) ? LIMITE_COMMENTAIRES_LISTE : listeCommentaire.size();
+
+		for(int i = 0; i < limite; i++)
+		{
+			Commentaire commentaire = listeCommentaire.get(i);
 			int indexDelimiteurMillisecondes = commentaire.getDate().toString().lastIndexOf('.');
-			String afficheString = commentaire.getDate().toString().substring(0,indexDelimiteurMillisecondes) + " - " + commentaire.getTitre();
+			String afficheString = commentaire.getId() + ") " + commentaire.getDate().toString().substring(0,indexDelimiteurMillisecondes) + " - " + commentaire.getTitre();
 			listeAfficher.add(afficheString);
 		}
 		
@@ -89,7 +96,7 @@ public class VueAccueilCommentaire extends Vue {
 			@Override
 			public void handle(Event arg0)
 			{
-				String[] chainesItem = listeCommentaireListView.getSelectionModel().getSelectedItem().split(" ");
+				String[] chainesItem = listeCommentaireListView.getSelectionModel().getSelectedItem().split("\\)");
 				controleur.notifierNavigationVueCommentaires(chainesItem[0]);
 			}
 		});

@@ -20,6 +20,11 @@ import modele.Commentaire;
 
 public class CommentaireDAO
 {
+	public static final String URL_LISTER_COMMENTAIRES = "https://tikenix.me/service/lecture/commentaires/";
+	public static final String URL_AJOUTER_COMMENTAIRE = "https://tikenix.me/ajouterCommentaire.php";
+	
+	DecodeurXML decodeurXML = new DecodeurXML();
+	
 	/*
 	public List<Commentaire> listerMockups()
 	{
@@ -50,26 +55,49 @@ public class CommentaireDAO
 	}
 	*/
 	
-	public static final String URL_LISTER_COMMENTAIRES = "https://tikenix.me/listerCommentaire.php";
-	public static final String URL_AJOUTER_COMMENTAIRE = "https://tikenix.me/ajouterCommentaire.php";
 	
-	DecodeurXML decodeurXML = new DecodeurXML();
-
-	//Lister les dix derniers commmentaires entrés
-	public List<Commentaire> listerDerniersCommentaires()
+	//Lister tous les commmentaires entrés par ordre d'ID décroissant
+	public List<Commentaire> listerCommentaires()
 	{
-		//List<Commentaire> listeCommentaires = new ArrayList<Commentaire>();
-		//Connection connection = BaseDeDonnees.getInstance().getConnection();
+		List<Commentaire> listeCommentaires = new ArrayList<Commentaire>();
+		Connection connection = BaseDeDonnees.getInstance().getConnection();
+		try
+		{
+			PreparedStatement requeteListerCommentaires = connection.prepareStatement("SELECT id, titre, date FROM commentaire ORDER BY id DESC");
+			ResultSet curseurListeCommentaires = requeteListerCommentaires.executeQuery();
+			
+			while(curseurListeCommentaires.next())
+			{
+				int id = curseurListeCommentaires.getInt("id");
+				String titre = curseurListeCommentaires.getString("titre");
+				Timestamp date = curseurListeCommentaires.getTimestamp("date");
+				
+				Commentaire commentaire = new Commentaire();
+				commentaire.setId(id);
+				commentaire.setTitre(titre);
+				commentaire.setDate(date);
+				listeCommentaires.add(commentaire);
+			}
+			
+			return listeCommentaires;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 		
+		return null;
+	}
+	
+	public List<Commentaire> listerDerniersCommentairesDistant()
+	{
 		String xml = null;
-		
 		try
 		{
 			URL urlListeCommentaires = new URL(URL_LISTER_COMMENTAIRES);
 			String derniereBalise = "</commentaires>";
 			
 			InputStream flux = urlListeCommentaires.openConnection().getInputStream();
-			
 			Scanner lecteur = new Scanner(flux);
 			lecteur.useDelimiter(derniereBalise);
 			xml = lecteur.next() + derniereBalise;
@@ -83,37 +111,9 @@ public class CommentaireDAO
 		if(null == xml) return null;
 		
 		return decodeurXML.decoderListe(xml);
-		
-//		try
-//		{
-//			PreparedStatement requeteListerCommentaires = connection.prepareStatement("SELECT id, titre, date FROM commentaire ORDER BY id DESC LIMIT 10");
-//			ResultSet curseurListeCommentaires = requeteListerCommentaires.executeQuery();
-//			
-//			while(curseurListeCommentaires.next())
-//			{
-//				int id = curseurListeCommentaires.getInt("id");
-//				String titre = curseurListeCommentaires.getString("titre");
-//				Timestamp date = curseurListeCommentaires.getTimestamp("date");
-//				
-//				Commentaire commentaire = new Commentaire();
-//				commentaire.setId(id);
-//				commentaire.setTitre(titre);
-//				commentaire.setDate(date);
-//				listeCommentaires.add(commentaire);
-//			}
-//			
-//			return listeCommentaires;
-//		}
-//		catch(Exception e)
-//		{
-//			e.printStackTrace();
-//		}
-//		
-//		return null;
 	}
 	
-	
-	public void ajouterCommentaire(Commentaire commentaire)
+	public void envoyerCommentairesJournee(List<Commentaire> listeCommentaires)
 	{
 		String xml = "";
 		try {
@@ -126,23 +126,24 @@ public class CommentaireDAO
 			OutputStream fluxEcriture = connection.getOutputStream();
 			OutputStreamWriter envoyeur = new OutputStreamWriter(fluxEcriture);
 			
+			Commentaire commentaire = listeCommentaires.get(0);
+			
 			envoyeur.write("titre=" + commentaire.getTitre() 
 							+ "&auteur=" + commentaire.getAuteur()
 							+ "&contenu=" + commentaire.getContenu()
 							+ "&date=" + commentaire.getDate()
 			);
-			
 			envoyeur.close();
 			
+			//Récupération de la réponse du serveur
 			int codeReponse = connection.getResponseCode();
-			
 			InputStream fluxLecture = connection.getInputStream();
 			Scanner lecteur = new Scanner(fluxLecture);
-			
 			String derniereBalise = "</action>";
 			lecteur.useDelimiter(derniereBalise);
 			xml = lecteur.next() + derniereBalise;
 			lecteur.close();
+			
 			connection.disconnect();
 			
 		} catch (MalformedURLException e) {
@@ -152,60 +153,64 @@ public class CommentaireDAO
 		}	
 		
 		decodeurXML.decoderReponseAction(xml);
-
 	}
 	
-//	public Commentaire detaillerCommentaire(int id)
-//	{
-//		Connection connection = BaseDeDonnees.getInstance().getConnection();
-//		
-//		try 
-//		{
-//			PreparedStatement requteCommentaire = connection.prepareStatement("SELECT titre, auteur, contenu, date FROM commentaire WHERE id = ?");
-//						
-//			requteCommentaire.setInt(1, id);
-//			ResultSet curseur = requteCommentaire.executeQuery();
-//			curseur.next();
-//			
-//			String titre = curseur.getString("titre");
-//			String auteur = curseur.getString("auteur");
-//			String contenu = curseur.getString("contenu");
-//			Timestamp annee = curseur.getTimestamp("date");
-//			
-//			Commentaire commentaire = new Commentaire();
-//			commentaire.setId(id);
-//			commentaire.setTitre(titre);
-//			commentaire.setAuteur(auteur);
-//			commentaire.setContenu(contenu);
-//			commentaire.setDate(annee);
-//			
-//			return commentaire;
-//		} 
-//		catch (SQLException e)
-//		{
-//				e.printStackTrace();
-//		}
-//		
-//		return null;
-//	}
-//	
-//	public void enregistrerCommentaire(Commentaire commentaire)
-//	{
-//		Connection connection = BaseDeDonnees.getInstance().getConnection();
-//		try
-//		{
-//			PreparedStatement requeteEnregistrerCommentaire =
-//					connection.prepareStatement("INSERT INTO commentaire (titre, auteur, contenu, date) VALUES (?, ?, ?, ?)");
-//			requeteEnregistrerCommentaire.setString(1, commentaire.getTitre());
-//			requeteEnregistrerCommentaire.setString(2, commentaire.getAuteur());
-//			requeteEnregistrerCommentaire.setString(3, commentaire.getContenu());
-//			requeteEnregistrerCommentaire.setTimestamp(4, commentaire.getDate());
-//			requeteEnregistrerCommentaire.execute();
-//		}
-//		catch(Exception e)
-//		{
-//			e.printStackTrace();
-//		}
-//	}
+	public Commentaire detaillerCommentaire(int id)
+	{
+		Connection connection = BaseDeDonnees.getInstance().getConnection();
+		
+		try 
+		{
+			PreparedStatement requeteCommentaire = connection.prepareStatement("SELECT titre, auteur, contenu, date FROM commentaire WHERE id = ?");
+						
+			requeteCommentaire.setInt(1, id);
+			ResultSet curseur = requeteCommentaire.executeQuery();
+			curseur.next();
+			
+			String titre = curseur.getString("titre");
+			String auteur = curseur.getString("auteur");
+			String contenu = curseur.getString("contenu");
+			Timestamp annee = curseur.getTimestamp("date");
+			
+			Commentaire commentaire = new Commentaire();
+			commentaire.setId(id);
+			commentaire.setTitre(titre);
+			commentaire.setAuteur(auteur);
+			commentaire.setContenu(contenu);
+			commentaire.setDate(annee);
+			
+			return commentaire;
+		} 
+		catch (SQLException e)
+		{
+				e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	public void enregistrerCommentaire(Commentaire commentaire)
+	{
+		Connection connection = BaseDeDonnees.getInstance().getConnection();
+		try
+		{
+			PreparedStatement requeteEnregistrerCommentaire =
+					connection.prepareStatement("INSERT INTO commentaire (titre, auteur, contenu, date) VALUES (?, ?, ?, ?)");
+			requeteEnregistrerCommentaire.setString(1, commentaire.getTitre());
+			requeteEnregistrerCommentaire.setString(2, commentaire.getAuteur());
+			requeteEnregistrerCommentaire.setString(3, commentaire.getContenu());
+			requeteEnregistrerCommentaire.setTimestamp(4, commentaire.getDate());
+			requeteEnregistrerCommentaire.execute();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+
+	public List<Commentaire> listerCommentairesJournee()
+	{
+		return null;
+	}
 	
 }
