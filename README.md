@@ -1,6 +1,5 @@
-# projet-readme
-Projet pour initialiser les dépôts de Classroom
-
+# Projet de base de données - Commentaires des voyageurs
+Programme d'une borne interactive sur un bateau de croisière servant à recueillir les commentaires des vacanciers
 
 ### Participants: Hy-Vong Georges Dit Rap, Kenny Maréchal, Niruban Thuraisingham
 
