@@ -22,9 +22,9 @@ import modele.Commentaire;
 public class DecodeurXML
 {
 
-	public List<Commentaire> decoderListe(String xml)
+	public Commentaire decoderDernierCommentaire(String xml)
 	{
-		List<Commentaire> listeCommentaires = new ArrayList<Commentaire>();
+		Commentaire commentaire = new Commentaire();
 		//System.out.println(xml);
 		try 
 		{
@@ -47,13 +47,11 @@ public class DecodeurXML
 //				String contenu = noeudCommentaire.getElementsByTagName("contenu").item(0).getTextContent();
 				String date = noeudCommentaire.getElementsByTagName("date").item(0).getTextContent();
 								
-				Commentaire commentaire = new Commentaire();
 				commentaire.setId(Integer.parseInt(id));
 				commentaire.setTitre(titre);
 //				commentaire.setAuteur(auteur);
 //				commentaire.setContenu(contenu);
 				commentaire.setDate(Timestamp.valueOf(date));
-				listeCommentaires.add(commentaire);
 			}
 		} 
 		catch (ParserConfigurationException e) 
@@ -65,7 +63,7 @@ public class DecodeurXML
 			e.printStackTrace();
 		}		
 		
-		return listeCommentaires;
+		return commentaire;
 	}
 	
 	public boolean decoderReponseAction(String xml)

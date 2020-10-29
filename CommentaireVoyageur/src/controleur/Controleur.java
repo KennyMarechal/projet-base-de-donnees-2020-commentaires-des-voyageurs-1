@@ -1,5 +1,7 @@
 package controleur;
 
+import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.sun.media.jfxmedia.logging.Logger;
@@ -62,7 +64,17 @@ public class Controleur {
 	{
 		Logger.logMsg(Logger.INFO, "Clic sur Synchroniser");
 		
-		List<Commentaire> listeCommentaireJournee = commentaireDAO.listerCommentairesJournee();
-		commentaireDAO.envoyerCommentairesJournee(listeCommentaireJournee);
+		List<Commentaire> listeCommentairesRecents = new ArrayList<Commentaire>();
+
+		Timestamp dernierTimestamp = commentaireDAO.listerDernierCommentaireDistant().getDate();
+		for(Commentaire commentaire : this.listeCommentaires)
+		{
+			//Si le commentaire de la liste est plus récent
+			if(commentaire.getDate().compareTo(dernierTimestamp) > 0)
+				listeCommentairesRecents.add(commentaire);
+				
+		}
+		
+		commentaireDAO.envoyerCommentairesRecents(listeCommentairesRecents);
 	}
 }

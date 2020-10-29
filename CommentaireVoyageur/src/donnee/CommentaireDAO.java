@@ -89,6 +89,7 @@ public class CommentaireDAO
 		return null;
 	}
 	
+	/*
 	public List<Commentaire> listerDerniersCommentairesDistant()
 	{
 		String xml = null;
@@ -112,8 +113,72 @@ public class CommentaireDAO
 		
 		return decodeurXML.decoderListe(xml);
 	}
+	*/
 	
-	public void envoyerCommentairesJournee(List<Commentaire> listeCommentaires)
+	/*
+	public List<Commentaire> listerCommentairesJournee()
+	{
+		List<Commentaire> listeCommentairesJournee = new ArrayList<Commentaire>();
+		Connection connection = BaseDeDonnees.getInstance().getConnection();
+		try
+		{
+			PreparedStatement requeteListerCommentairesJournee = connection.prepareStatement("SELECT id, titre, auteur, contenu, date FROM commentaire WHERE DATE(date) = CURDATE()");
+			ResultSet curseurListeCommentairesJournee = requeteListerCommentairesJournee.executeQuery();
+			
+			while(curseurListeCommentairesJournee.next())
+			{
+				int id = curseurListeCommentairesJournee.getInt("id");
+				String titre = curseurListeCommentairesJournee.getString("titre");
+				String auteur = curseurListeCommentairesJournee.getString("auteur");
+				String contenu = curseurListeCommentairesJournee.getString("contenu");
+				Timestamp date = curseurListeCommentairesJournee.getTimestamp("date");
+				
+				Commentaire commentaire = new Commentaire();
+				commentaire.setId(id);
+				commentaire.setTitre(titre);
+				commentaire.setAuteur(auteur);
+				commentaire.setContenu(contenu);
+				commentaire.setDate(date);
+				listeCommentairesJournee.add(commentaire);
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		return listeCommentairesJournee;
+	}
+	*/
+	
+	public Commentaire listerDernierCommentaireDistant()
+	{
+		String xml = null;
+		try
+		{
+			URL urlListeCommentaires = new URL(URL_LISTER_COMMENTAIRES);
+			String derniereBalise = "</commentaires>";
+			
+			InputStream flux = urlListeCommentaires.openConnection().getInputStream();
+			Scanner lecteur = new Scanner(flux);
+			lecteur.useDelimiter(derniereBalise);
+			xml = lecteur.next() + derniereBalise;
+			
+			System.out.println(xml);
+			
+			lecteur.close();
+		}
+		catch(IOException e)
+		{
+			e.printStackTrace();
+		}
+		
+		if(null == xml) return null;
+		
+		return decodeurXML.decoderDernierCommentaire(xml);
+	}
+	
+	public void envoyerCommentairesRecents(List<Commentaire> listeCommentaires)
 	{
 		String xml = "";
 		try {
@@ -123,17 +188,18 @@ public class CommentaireDAO
 			connection.setDoOutput(true);
 			connection.setRequestMethod("POST");
 			
-			OutputStream fluxEcriture = connection.getOutputStream();
-			OutputStreamWriter envoyeur = new OutputStreamWriter(fluxEcriture);
 			
-			Commentaire commentaire = listeCommentaires.get(0);
-			
-			envoyeur.write("titre=" + commentaire.getTitre() 
-							+ "&auteur=" + commentaire.getAuteur()
-							+ "&contenu=" + commentaire.getContenu()
-							+ "&date=" + commentaire.getDate()
-			);
-			envoyeur.close();
+			for(Commentaire commentaire : listeCommentaires)
+			{
+				OutputStream fluxEcriture = connection.getOutputStream();
+				OutputStreamWriter envoyeur = new OutputStreamWriter(fluxEcriture);				
+				envoyeur.write("titre=" + commentaire.getTitre() 
+								+ "&auteur=" + commentaire.getAuteur()
+								+ "&contenu=" + commentaire.getContenu()
+								+ "&date=" + commentaire.getDate()
+				);
+				envoyeur.close();
+			}
 			
 			//Récupération de la réponse du serveur
 			int codeReponse = connection.getResponseCode();
@@ -207,10 +273,4 @@ public class CommentaireDAO
 			e.printStackTrace();
 		}
 	}
-
-	public List<Commentaire> listerCommentairesJournee()
-	{
-		return null;
-	}
-	
 }
