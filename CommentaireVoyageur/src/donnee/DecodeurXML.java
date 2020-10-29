@@ -43,15 +43,15 @@ public class DecodeurXML
 				Element noeudCommentaire = (Element)listeNoeudsCommentaire.item(position);
 				String id = noeudCommentaire.getElementsByTagName("id").item(0).getTextContent();
 				String titre = noeudCommentaire.getElementsByTagName("titre").item(0).getTextContent();
-				String auteur = noeudCommentaire.getElementsByTagName("auteur").item(0).getTextContent();
-				String contenu = noeudCommentaire.getElementsByTagName("contenu").item(0).getTextContent();
+//				String auteur = noeudCommentaire.getElementsByTagName("auteur").item(0).getTextContent();
+//				String contenu = noeudCommentaire.getElementsByTagName("contenu").item(0).getTextContent();
 				String date = noeudCommentaire.getElementsByTagName("date").item(0).getTextContent();
 								
 				Commentaire commentaire = new Commentaire();
 				commentaire.setId(Integer.parseInt(id));
 				commentaire.setTitre(titre);
-				commentaire.setAuteur(auteur);
-				commentaire.setContenu(contenu);
+//				commentaire.setAuteur(auteur);
+//				commentaire.setContenu(contenu);
 				commentaire.setDate(Timestamp.valueOf(date));
 				listeCommentaires.add(commentaire);
 			}

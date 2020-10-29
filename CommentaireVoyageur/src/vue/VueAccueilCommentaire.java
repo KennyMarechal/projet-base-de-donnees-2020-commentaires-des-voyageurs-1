@@ -1,9 +1,5 @@
 package vue;
 
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.sql.Date;
 import java.util.List;
 
 import com.sun.media.jfxmedia.logging.Logger;
@@ -82,7 +78,8 @@ public class VueAccueilCommentaire extends Vue {
 		ObservableList<String> listeAfficher = FXCollections.observableArrayList();
 				
 		for(Commentaire commentaire : listeCommentaire) {
-			String afficheString = commentaire.getDate() + " - " + commentaire.getTitre();
+			int indexDelimiteurMillisecondes = commentaire.getDate().toString().lastIndexOf('.');
+			String afficheString = commentaire.getDate().toString().substring(0,indexDelimiteurMillisecondes) + " - " + commentaire.getTitre();
 			listeAfficher.add(afficheString);
 		}
 		
