@@ -11,7 +11,7 @@ Programme d'une borne interactive sur un bateau de croisière servant à recueil
 - http://tikenix.me/service/dernier/commentaire/
 
 *En écriture*
-https://tikenix.me/service/ecriture/commentaires/
+- https://tikenix.me/service/ecriture/commentaires/
 
 *Pour mobile*
-https://tikenix.me/service/mobile/commentaires/
+- https://tikenix.me/service/mobile/commentaires/
