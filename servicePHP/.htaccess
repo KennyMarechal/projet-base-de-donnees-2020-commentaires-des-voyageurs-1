@@ -1,0 +1,6 @@
+RewriteEngine On
+
+RewriteRule ^service/lecture/commentaires/?$ listerCommentaire.php
+RewriteRule ^service/ecriture/commentaires/?$ ajouterCommentaire.php
+RewriteRule ^service/mobile/commentaires/?$ listerCommentaire.php
+RewriteRule ^service/dernier/commentaire/?$ dernierCommentaire.php
