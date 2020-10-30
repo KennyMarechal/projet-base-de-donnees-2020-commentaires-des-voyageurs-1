@@ -7,7 +7,8 @@ Programme d'une borne interactive sur un bateau de croisière servant à recueil
 ### Plans des URL
 
 *En lecture*
-https://tikenix.me/service/lecture/commentaires/
+- https://tikenix.me/service/lecture/commentaires/
+- http://tikenix.me/service/dernier/commentaire/
 
 *En écriture*
 https://tikenix.me/service/ecriture/commentaires/
