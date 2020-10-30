@@ -24,6 +24,8 @@ public class Controleur {
 	
 	public Controleur() {
 		Logger.logMsg(Logger.INFO, "new Controleur()");
+		//Initialisation de la liste de commentaires
+		this.listeCommentaires = commentaireDAO.listerCommentaires();
 	}
 	
 	public static Vue selectionnerVuePrincipale() 
@@ -64,17 +66,22 @@ public class Controleur {
 	{
 		Logger.logMsg(Logger.INFO, "Clic sur Synchroniser");
 		
-		List<Commentaire> listeCommentairesRecents = new ArrayList<Commentaire>();
-
 		Timestamp dernierTimestamp = commentaireDAO.listerDernierCommentaireDistant().getDate();
-		for(Commentaire commentaire : this.listeCommentaires)
+		
+		int nombreCommentaires = 0;
+		for(int i = this.listeCommentaires.size()-1; i >= 0; i --)
 		{
+			Commentaire commentaire = this.listeCommentaires.get(i);
+			
 			//Si le commentaire de la liste est plus récent
 			if(commentaire.getDate().compareTo(dernierTimestamp) > 0)
-				listeCommentairesRecents.add(commentaire);
-				
+			{
+				//listeCommentairesRecents.add(commentaire);
+				nombreCommentaires++;
+				commentaireDAO.envoyerCommentaireRecent(commentaire);
+			}		
 		}
+		System.out.println("Nombre de commentaires envoyés: " + nombreCommentaires);
 		
-		commentaireDAO.envoyerCommentairesRecents(listeCommentairesRecents);
 	}
 }

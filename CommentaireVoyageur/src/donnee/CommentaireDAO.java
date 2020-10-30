@@ -20,7 +20,7 @@ import modele.Commentaire;
 
 public class CommentaireDAO
 {
-	public static final String URL_LISTER_COMMENTAIRES = "https://tikenix.me/service/lecture/commentaires/";
+	public static final String URL_LISTER_DERNIER = "http://tikenix.me/service/dernier/commentaire/";
 	public static final String URL_AJOUTER_COMMENTAIRE = "https://tikenix.me/ajouterCommentaire.php";
 	
 	DecodeurXML decodeurXML = new DecodeurXML();
@@ -63,18 +63,22 @@ public class CommentaireDAO
 		Connection connection = BaseDeDonnees.getInstance().getConnection();
 		try
 		{
-			PreparedStatement requeteListerCommentaires = connection.prepareStatement("SELECT id, titre, date FROM commentaire ORDER BY id DESC");
+			PreparedStatement requeteListerCommentaires = connection.prepareStatement("SELECT id, titre, auteur, contenu, date FROM commentaire ORDER BY id DESC");
 			ResultSet curseurListeCommentaires = requeteListerCommentaires.executeQuery();
 			
 			while(curseurListeCommentaires.next())
 			{
 				int id = curseurListeCommentaires.getInt("id");
 				String titre = curseurListeCommentaires.getString("titre");
+				String auteur = curseurListeCommentaires.getString("auteur");
+				String contenu = curseurListeCommentaires.getString("contenu");
 				Timestamp date = curseurListeCommentaires.getTimestamp("date");
 				
 				Commentaire commentaire = new Commentaire();
 				commentaire.setId(id);
 				commentaire.setTitre(titre);
+				commentaire.setAuteur(auteur);
+				commentaire.setContenu(contenu);
 				commentaire.setDate(date);
 				listeCommentaires.add(commentaire);
 			}
@@ -114,58 +118,21 @@ public class CommentaireDAO
 		return decodeurXML.decoderListe(xml);
 	}
 	*/
-	
-	/*
-	public List<Commentaire> listerCommentairesJournee()
-	{
-		List<Commentaire> listeCommentairesJournee = new ArrayList<Commentaire>();
-		Connection connection = BaseDeDonnees.getInstance().getConnection();
-		try
-		{
-			PreparedStatement requeteListerCommentairesJournee = connection.prepareStatement("SELECT id, titre, auteur, contenu, date FROM commentaire WHERE DATE(date) = CURDATE()");
-			ResultSet curseurListeCommentairesJournee = requeteListerCommentairesJournee.executeQuery();
-			
-			while(curseurListeCommentairesJournee.next())
-			{
-				int id = curseurListeCommentairesJournee.getInt("id");
-				String titre = curseurListeCommentairesJournee.getString("titre");
-				String auteur = curseurListeCommentairesJournee.getString("auteur");
-				String contenu = curseurListeCommentairesJournee.getString("contenu");
-				Timestamp date = curseurListeCommentairesJournee.getTimestamp("date");
-				
-				Commentaire commentaire = new Commentaire();
-				commentaire.setId(id);
-				commentaire.setTitre(titre);
-				commentaire.setAuteur(auteur);
-				commentaire.setContenu(contenu);
-				commentaire.setDate(date);
-				listeCommentairesJournee.add(commentaire);
-			}
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-		
-		return listeCommentairesJournee;
-	}
-	*/
+
 	
 	public Commentaire listerDernierCommentaireDistant()
 	{
 		String xml = null;
 		try
 		{
-			URL urlListeCommentaires = new URL(URL_LISTER_COMMENTAIRES);
+			URL urlListeCommentaires = new URL(URL_LISTER_DERNIER);
 			String derniereBalise = "</commentaires>";
 			
 			InputStream flux = urlListeCommentaires.openConnection().getInputStream();
 			Scanner lecteur = new Scanner(flux);
 			lecteur.useDelimiter(derniereBalise);
 			xml = lecteur.next() + derniereBalise;
-			
-			System.out.println(xml);
-			
+						
 			lecteur.close();
 		}
 		catch(IOException e)
@@ -178,7 +145,7 @@ public class CommentaireDAO
 		return decodeurXML.decoderDernierCommentaire(xml);
 	}
 	
-	public void envoyerCommentairesRecents(List<Commentaire> listeCommentaires)
+	public void envoyerCommentaireRecent(Commentaire commentaire)
 	{
 		String xml = "";
 		try {
@@ -188,18 +155,18 @@ public class CommentaireDAO
 			connection.setDoOutput(true);
 			connection.setRequestMethod("POST");
 			
+			OutputStream fluxEcriture = connection.getOutputStream();
+			OutputStreamWriter envoyeur = new OutputStreamWriter(fluxEcriture);	
 			
-			for(Commentaire commentaire : listeCommentaires)
-			{
-				OutputStream fluxEcriture = connection.getOutputStream();
-				OutputStreamWriter envoyeur = new OutputStreamWriter(fluxEcriture);				
-				envoyeur.write("titre=" + commentaire.getTitre() 
-								+ "&auteur=" + commentaire.getAuteur()
-								+ "&contenu=" + commentaire.getContenu()
-								+ "&date=" + commentaire.getDate()
-				);
-				envoyeur.close();
-			}
+			//System.out.println("Auteur:" + commentaire.getAuteur() + "/ Contenu :"+ commentaire.getContenu());
+			
+			envoyeur.write("titre=" + commentaire.getTitre() 
+							+ "&auteur=" + commentaire.getAuteur()
+							+ "&contenu=" + commentaire.getContenu()
+							+ "&date=" + commentaire.getDate()
+			);
+			envoyeur.close();
+
 			
 			//Récupération de la réponse du serveur
 			int codeReponse = connection.getResponseCode();
