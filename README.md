@@ -15,3 +15,6 @@ Programme d'une borne interactive sur un bateau de croisière servant à recueil
 
 *Pour mobile*
 - https://tikenix.me/service/mobile/commentaires/
+
+*lien de la page web*
+- https://tikenix.me/commentaire
