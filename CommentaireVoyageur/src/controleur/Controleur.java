@@ -69,7 +69,7 @@ public class Controleur {
 		Timestamp dernierTimestamp = commentaireDAO.listerDernierCommentaireDistant().getDate();
 		
 		int nombreCommentaires = 0;
-		for(int i = this.listeCommentaires.size()-1; i >= 0; i --)
+		for(int i = this.listeCommentaires.size()-1; i >= 0; i--)
 		{
 			Commentaire commentaire = this.listeCommentaires.get(i);
 			

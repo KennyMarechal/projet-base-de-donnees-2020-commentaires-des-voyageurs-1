@@ -21,7 +21,7 @@ import modele.Commentaire;
 public class CommentaireDAO
 {
 	public static final String URL_LISTER_DERNIER = "http://tikenix.me/service/dernier/commentaire/";
-	public static final String URL_AJOUTER_COMMENTAIRE = "https://tikenix.me/ajouterCommentaire.php";
+	public static final String URL_AJOUTER_COMMENTAIRE = "https://tikenix.me/service/ecriture/commentaires/";
 	
 	DecodeurXML decodeurXML = new DecodeurXML();
 	
@@ -63,7 +63,7 @@ public class CommentaireDAO
 		Connection connection = BaseDeDonnees.getInstance().getConnection();
 		try
 		{
-			PreparedStatement requeteListerCommentaires = connection.prepareStatement("SELECT id, titre, auteur, contenu, date FROM commentaire ORDER BY id DESC");
+			PreparedStatement requeteListerCommentaires = connection.prepareStatement("SELECT id, titre, auteur, contenu, date, note FROM commentaire ORDER BY id DESC");
 			ResultSet curseurListeCommentaires = requeteListerCommentaires.executeQuery();
 			
 			while(curseurListeCommentaires.next())
@@ -73,6 +73,7 @@ public class CommentaireDAO
 				String auteur = curseurListeCommentaires.getString("auteur");
 				String contenu = curseurListeCommentaires.getString("contenu");
 				Timestamp date = curseurListeCommentaires.getTimestamp("date");
+				int note = curseurListeCommentaires.getInt("note");
 				
 				Commentaire commentaire = new Commentaire();
 				commentaire.setId(id);
@@ -80,6 +81,7 @@ public class CommentaireDAO
 				commentaire.setAuteur(auteur);
 				commentaire.setContenu(contenu);
 				commentaire.setDate(date);
+				commentaire.setNote(note);
 				listeCommentaires.add(commentaire);
 			}
 			
@@ -194,7 +196,7 @@ public class CommentaireDAO
 		
 		try 
 		{
-			PreparedStatement requeteCommentaire = connection.prepareStatement("SELECT titre, auteur, contenu, date FROM commentaire WHERE id = ?");
+			PreparedStatement requeteCommentaire = connection.prepareStatement("SELECT titre, auteur, contenu, date, note FROM commentaire WHERE id = ?");
 						
 			requeteCommentaire.setInt(1, id);
 			ResultSet curseur = requeteCommentaire.executeQuery();
@@ -204,6 +206,7 @@ public class CommentaireDAO
 			String auteur = curseur.getString("auteur");
 			String contenu = curseur.getString("contenu");
 			Timestamp annee = curseur.getTimestamp("date");
+			int note = curseur.getInt("note");
 			
 			Commentaire commentaire = new Commentaire();
 			commentaire.setId(id);
@@ -211,6 +214,7 @@ public class CommentaireDAO
 			commentaire.setAuteur(auteur);
 			commentaire.setContenu(contenu);
 			commentaire.setDate(annee);
+			commentaire.setNote(note);
 			
 			return commentaire;
 		} 
@@ -228,11 +232,12 @@ public class CommentaireDAO
 		try
 		{
 			PreparedStatement requeteEnregistrerCommentaire =
-					connection.prepareStatement("INSERT INTO commentaire (titre, auteur, contenu, date) VALUES (?, ?, ?, ?)");
+					connection.prepareStatement("INSERT INTO commentaire (titre, auteur, contenu, date, note) VALUES (?, ?, ?, ?, ?)");
 			requeteEnregistrerCommentaire.setString(1, commentaire.getTitre());
 			requeteEnregistrerCommentaire.setString(2, commentaire.getAuteur());
 			requeteEnregistrerCommentaire.setString(3, commentaire.getContenu());
 			requeteEnregistrerCommentaire.setTimestamp(4, commentaire.getDate());
+			requeteEnregistrerCommentaire.setInt(5, commentaire.getNote());
 			requeteEnregistrerCommentaire.execute();
 		}
 		catch(Exception e)

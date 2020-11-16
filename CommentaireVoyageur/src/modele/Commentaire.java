@@ -9,6 +9,7 @@ public class Commentaire
 	protected String auteur;
 	protected String contenu;
 	protected Timestamp date;
+	protected int note;
 	
 	public int getId() {
 		return id;
@@ -39,5 +40,11 @@ public class Commentaire
 	}
 	public void setDate(Timestamp date) {
 		this.date = date;
+	}
+	public void setNote(int note) {
+		this.note = note;
+	}
+	public int getNote() {
+		return this.note;
 	}
 }

@@ -1,5 +1,7 @@
 package vue;
 
+import org.controlsfx.control.Rating;
+
 import com.sun.media.jfxmedia.logging.Logger;
 
 import controleur.Controleur;
@@ -39,11 +41,13 @@ public class VueCommentaires extends Vue{
 		Label labelCommentaireVoyageur = (Label)lookup("#vue-commentaire-commentaire-voyageur");
 		Label labelNomVoyageur = (Label)lookup("#vue-commentaire-nom-voyageur");
 		Label labelDateCommentaire = (Label)lookup("#vue-commentaire-date-commentaire");
+		Rating ratingNoteCommentaire = (Rating)lookup("#vue-commentaire-note");
 		
 		labelTitreCommentaire.setText(commentaire.getTitre());
 		labelCommentaireVoyageur.setText(commentaire.getContenu());
 		labelNomVoyageur.setText(commentaire.getAuteur());
 		labelDateCommentaire.setText(commentaire.getDate().toString());
+		ratingNoteCommentaire.setRating(commentaire.getNote());
 	}
 	
 }

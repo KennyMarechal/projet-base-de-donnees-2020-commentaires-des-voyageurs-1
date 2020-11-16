@@ -86,7 +86,10 @@ public class VueAccueilCommentaire extends Vue {
 		{
 			Commentaire commentaire = listeCommentaire.get(i);
 			int indexDelimiteurMillisecondes = commentaire.getDate().toString().lastIndexOf('.');
-			String afficheString = commentaire.getId() + ") " + commentaire.getDate().toString().substring(0,indexDelimiteurMillisecondes) + " - " + commentaire.getTitre();
+			String afficheString = commentaire.getId() + ") " 
+							+ commentaire.getDate().toString().substring(0,indexDelimiteurMillisecondes) 
+							+ " - " 
+							+ commentaire.getTitre();
 			listeAfficher.add(afficheString);
 		}
 		
