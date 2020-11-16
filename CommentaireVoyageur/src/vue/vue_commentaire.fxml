@@ -1,39 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.Rating?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" stylesheets="@decoration/commentaire.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label id="vue-commentaire-titre" layoutX="132.0" layoutY="189.0" prefHeight="62.0" prefWidth="352.0" text="TITRE COMMENTAIRE" textAlignment="JUSTIFY" textFill="#db0d0d" wrapText="true">
-         <font>
-            <Font size="36.0" />
-         </font>
-      </Label>
-      <Label id="vue-commentaire-nom-voyageur" alignment="CENTER" layoutX="59.0" layoutY="270.0" prefHeight="23.0" prefWidth="493.0" text="De : Nom voyageur" textAlignment="CENTER" textFill="#db0d0d" wrapText="true">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Button id="vue-commentaire-action-retour" fx:id="vueAccueilActionLaisserCommentaire" layoutX="245.0" layoutY="660.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="127.0" text="BACK" />
-      <ImageView id="VueAjouterCommentaireImage" fitHeight="165.0" fitWidth="485.0" layoutX="81.0" layoutY="14.0">
+      <ImageView id="VueAjouterCommentaireImage" fitHeight="165.0" fitWidth="493.0" layoutX="54.0" layoutY="14.0">
          <image>
             <Image url="@../../image/image_bateau.PNG" />
          </image>
       </ImageView>
-      <Label id="vue-commentaire-commentaire-voyageur" alignment="TOP_LEFT" layoutX="37.0" layoutY="363.0" prefHeight="74.0" prefWidth="493.0" text="Commentaire du voyageur " textAlignment="JUSTIFY" textFill="#db0d0d" wrapText="true">
+      <Label id="vue-commentaire-titre" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="56.0" layoutY="185.0" prefHeight="85.0" prefWidth="493.0" text="TITRE COMMENTAIRE" textAlignment="JUSTIFY" textFill="#db0d0d" wrapText="true">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
+      <Label id="vue-commentaire-nom-voyageur" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="281.0" layoutY="271.0" prefHeight="27.0" prefWidth="266.0" text="De : Nom voyageur" textAlignment="RIGHT" textFill="#db0d0d" wrapText="true">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label id="vue-commentaire-date-commentaire" alignment="CENTER" layoutX="59.0" layoutY="297.0" prefHeight="23.0" prefWidth="493.0" text="Le : Date commentaire" textAlignment="CENTER" textFill="#db0d0d" wrapText="true">
+      <Label id="vue-commentaire-date-commentaire" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="281.0" layoutY="298.0" prefHeight="27.0" prefWidth="266.0" text="Le : Date commentaire" textAlignment="RIGHT" textFill="#db0d0d" wrapText="true">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
+      <Label id="vue-commentaire-commentaire-voyageur" alignment="TOP_LEFT" layoutX="56.0" layoutY="356.0" prefHeight="286.0" prefWidth="493.0" style="-fx-border-color: black;" text="Commentaire du voyageur " textAlignment="JUSTIFY" textFill="#db0d0d" wrapText="true">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </Label>
+      <Button id="vue-commentaire-action-retour" fx:id="vueAccueilActionLaisserCommentaire" layoutX="237.0" layoutY="658.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="127.0" text="BACK" />
+      <Rating id="vue-commentaire-note" fx:id="vueCommentaireNote" focusTraversable="false" layoutX="74.0" layoutY="282.0" mouseTransparent="true" prefHeight="27.0" prefWidth="167.0" rating="0.0" scaleX="1.2" scaleY="1.2" scaleZ="1.2" />
    </children>
 </Pane>
