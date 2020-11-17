@@ -1,0 +1,77 @@
+header{
+	height:450px;
+	margin: 0;
+	width: 100%;
+	background-image: url("../image/croisieresdereve.jpg");
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+html{
+	background-color: #5390D9;
+	margin:0;
+	padding:0;
+}
+
+#contenu{
+	margin-left: 30%;
+	margin-right: 30%;
+}
+
+#contenu h2{
+	text-align:center;
+	color:#1B1F3B;
+}
+
+.bloc-commentaire{
+	border: 2px solid blue;
+	margin-bottom: 5px;
+	border-radius: 12px;
+	background-color: #F1FAEE;
+}
+
+.auteur{
+	margin: 5px;
+	text-align: right;
+}
+
+.commentaire{
+	margin: 5px;
+}
+
+.titre{
+	margin: 5px;
+}
+
+.logo-right{
+	height: 50px;
+	position:absolute;
+	z-index:1;
+	right:0px;
+	bottom: 200px;
+	position: fixed;
+}
+
+.baleine-droite{
+	width: 100%;
+	max-width: 375px;
+	height: auto;
+	transform: scaleX(-1);
+	opacity:0.85;
+}
+
+.logo-left{
+	height: 50px;
+	position:absolute;
+	z-index:1;
+	left:0px;
+	bottom: 200px;
+	position: fixed;
+}
+
+.baleine-gauche{
+	width: 100%;
+	max-width: 375px;
+	height: auto;
+	opacity:0.85;
+}

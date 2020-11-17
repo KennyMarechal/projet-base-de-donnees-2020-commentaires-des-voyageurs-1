@@ -6,7 +6,7 @@ class CommentaireDAO
 	{
 		include "accesseur/connexion.php";
 		
-		$SQL_LISTE_COMMENTAIRE = "SELECT id, titre, date FROM commentaire ORDER BY date DESC";
+		$SQL_LISTE_COMMENTAIRE = "SELECT id, titre,contenu, auteur, date, note FROM commentaire ORDER BY date DESC;";
 		$requeteListeCommentaire = $basededonnees->prepare($SQL_LISTE_COMMENTAIRE);
 		$resultat = $requeteListeCommentaire->execute();
 		$listeCommentaires = $requeteListeCommentaire->fetchAll(PDO::FETCH_OBJ);
@@ -30,8 +30,8 @@ class CommentaireDAO
 	{
 		include "accesseur/connexion.php";
 			
-		$SQL_AJOUTER_COMMENTAIRE = "INSERT into commentaire(titre, auteur, contenu, date)
-			VALUES('$commentaire->titre','$commentaire->auteur','$commentaire->contenu','$commentaire->date')";
+		$SQL_AJOUTER_COMMENTAIRE = "INSERT into commentaire(titre, auteur, contenu, date, note)
+			VALUES('$commentaire->titre','$commentaire->auteur','$commentaire->contenu','$commentaire->date','$commentaire->note')";
 				
 		$requeteAjouterCommentaire = $basededonnees->prepare($SQL_AJOUTER_COMMENTAIRE);
 		$requeteAjouterCommentaire->execute();

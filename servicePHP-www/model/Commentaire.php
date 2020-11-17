@@ -6,6 +6,7 @@ class Commentaire{
 	public $auteur;
 	public $contenu;
 	public $date;
+	public $note;
 	
 	/*function __construct($id, $titre, $auteur, $contenu, $date){
 		$this->id = $id;
@@ -45,6 +46,14 @@ class Commentaire{
 	
 	public function setDate($date){
 		$this->date = $date;
+	}
+
+	public function getNote(){
+		return $this->note;
+	}
+	
+	public function setNote($note){
+		$this->note = $note;
 	}
 }
 ?>

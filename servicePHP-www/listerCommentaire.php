@@ -15,7 +15,8 @@
 	<commentaire>
 	<id><?=$commentaire->id?></id>
 	<titre><?=$commentaire->titre?></titre>
-	<date><?=$commentaire->date?></date>
+	<commentaire><?=$commentaire->contenu?></commentaire>
+	<auteur><?=$commentaire->auteur?></auteur>
 	</commentaire>
 	<?php
 	}
