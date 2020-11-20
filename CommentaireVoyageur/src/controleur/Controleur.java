@@ -31,7 +31,7 @@ public class Controleur {
 	public static Vue selectionnerVuePrincipale() 
 	{ 
 		/*La vue principale c'est la vue qui comporte les listes*/
-		VueAccueilCommentaire.getInstance().afficherCommentaire(commentaireDAO.listerCommentaires());
+		VueAccueilCommentaire.getInstance().afficherCommentaires(commentaireDAO.listerCommentaires());
 		return VueAccueilCommentaire.getInstance();
 	}
 	
@@ -49,14 +49,14 @@ public class Controleur {
 		// enregistrer les infos dans le DAO
 		commentaireDAO.enregistrerCommentaire(commentaire);
 		this.listeCommentaires = commentaireDAO.listerCommentaires();
-		VueAccueilCommentaire.getInstance().afficherCommentaire(this.listeCommentaires);
+		VueAccueilCommentaire.getInstance().afficherCommentaires(this.listeCommentaires);
 		Navigateur.getInstance().afficherVue(VueAccueilCommentaire.getInstance());
 	}
 
-	public void notifierNavigationVueCommentaires(String id)
+	public void notifierNavigationVueCommentaires(int id)
 	{
-		Logger.logMsg(Logger.INFO, id);
-		Commentaire commentaire = commentaireDAO.detaillerCommentaire(Integer.parseInt(id));
+		Logger.logMsg(Logger.INFO, String.valueOf(id));
+		Commentaire commentaire = commentaireDAO.detaillerCommentaire(id);
 		
 		VueCommentaires.getInstance().afficherInfosCommentaire(commentaire);
 		Navigateur.getInstance().afficherVue(VueCommentaires.getInstance());

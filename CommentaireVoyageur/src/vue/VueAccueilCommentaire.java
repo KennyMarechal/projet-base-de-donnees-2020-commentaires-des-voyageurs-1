@@ -2,6 +2,8 @@ package vue;
 
 import java.util.List;
 
+import org.controlsfx.control.Rating;
+
 import com.sun.media.jfxmedia.logging.Logger;
 
 import controleur.Controleur;
@@ -11,12 +13,15 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.util.Callback;
 import modele.Commentaire;
+import modele.ListCellCommentaire;
 
 public class VueAccueilCommentaire extends Vue {
 	
@@ -75,32 +80,39 @@ public class VueAccueilCommentaire extends Vue {
 
 	}
 	
-	public void afficherCommentaire(List<Commentaire> listeCommentaire) {
-		ListView<String> listeCommentaireListView = (ListView<String>)lookup("#listView");
-		ObservableList<String> listeAfficher = FXCollections.observableArrayList();
+	public void afficherCommentaires(List<Commentaire> listeCommentaire) {
 		
+		ListView<Commentaire> listViewCommentaires = (ListView<Commentaire>)lookup("#vue-accueil-listView");
+
+		ObservableList<Commentaire> listeCommentaireAfficher = FXCollections.observableArrayList();
+
 		//Définit une limite selon la taille de la liste en BDD et la taille donnée par l'application
 		int limite = (listeCommentaire.size() >= LIMITE_COMMENTAIRES_LISTE) ? LIMITE_COMMENTAIRES_LISTE : listeCommentaire.size();
-
 		for(int i = 0; i < limite; i++)
 		{
 			Commentaire commentaire = listeCommentaire.get(i);
-			int indexDelimiteurMillisecondes = commentaire.getDate().toString().lastIndexOf('.');
-			String afficheString = commentaire.getId() + ") " 
-							+ commentaire.getDate().toString().substring(0,indexDelimiteurMillisecondes) 
-							+ " - " 
-							+ commentaire.getTitre();
-			listeAfficher.add(afficheString);
+			listeCommentaireAfficher.add(commentaire);
 		}
 		
-		listeCommentaireListView.setItems(listeAfficher);
-		listeCommentaireListView.setOnMouseClicked(new EventHandler<Event>()
+				
+		listViewCommentaires.setItems(listeCommentaireAfficher);
+		
+		listViewCommentaires.setCellFactory(new Callback<ListView<Commentaire>, ListCell<Commentaire>>() {
+			@Override
+			public ListCell<Commentaire> call(ListView<Commentaire> listView)
+			{
+				return new ListCellCommentaire();
+			}
+			
+		});
+
+		
+		listViewCommentaires.setOnMouseClicked(new EventHandler<Event>()
 		{
 			@Override
 			public void handle(Event arg0)
 			{
-				String[] chainesItem = listeCommentaireListView.getSelectionModel().getSelectedItem().split("\\)");
-				controleur.notifierNavigationVueCommentaires(chainesItem[0]);
+				controleur.notifierNavigationVueCommentaires(listViewCommentaires.getSelectionModel().getSelectedItem().getId());
 			}
 		});
 	}
