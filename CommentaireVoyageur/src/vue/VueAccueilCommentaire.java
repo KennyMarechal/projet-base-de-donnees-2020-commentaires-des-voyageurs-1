@@ -83,7 +83,6 @@ public class VueAccueilCommentaire extends Vue {
 	public void afficherCommentaires(List<Commentaire> listeCommentaire) {
 		
 		ListView<Commentaire> listViewCommentaires = (ListView<Commentaire>)lookup("#vue-accueil-listView");
-
 		ObservableList<Commentaire> listeCommentaireAfficher = FXCollections.observableArrayList();
 
 		//Définit une limite selon la taille de la liste en BDD et la taille donnée par l'application
@@ -96,14 +95,12 @@ public class VueAccueilCommentaire extends Vue {
 		
 				
 		listViewCommentaires.setItems(listeCommentaireAfficher);
-		
 		listViewCommentaires.setCellFactory(new Callback<ListView<Commentaire>, ListCell<Commentaire>>() {
 			@Override
 			public ListCell<Commentaire> call(ListView<Commentaire> listView)
 			{
 				return new ListCellCommentaire();
 			}
-			
 		});
 
 		

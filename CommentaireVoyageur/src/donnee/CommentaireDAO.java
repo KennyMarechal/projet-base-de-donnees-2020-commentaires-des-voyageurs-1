@@ -166,6 +166,7 @@ public class CommentaireDAO
 							+ "&auteur=" + commentaire.getAuteur()
 							+ "&contenu=" + commentaire.getContenu()
 							+ "&date=" + commentaire.getDate()
+							+ "&note=" + commentaire.getNote()
 			);
 			envoyeur.close();
 

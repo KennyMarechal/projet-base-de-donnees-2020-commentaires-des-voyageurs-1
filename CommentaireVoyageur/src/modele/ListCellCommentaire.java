@@ -2,11 +2,9 @@ package modele;
 
 import org.controlsfx.control.Rating;
 
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
 import javafx.scene.text.Text;
 
 public class ListCellCommentaire extends ListCell<Commentaire>
@@ -42,7 +40,6 @@ public class ListCellCommentaire extends ListCell<Commentaire>
 			this.note.setRating(commentaire.getNote());
 			int indexDelimiteurMillisecondes = commentaire.getDate().toString().lastIndexOf('.');
 	        contenu.setText(commentaire.getDate().toString().substring(0,indexDelimiteurMillisecondes)+" - "+commentaire.getTitre());
-	        
 			setGraphic(boiteNote);
 			
 			//System.out.println("Texte commentaire #"+commentaire.getId()+": "+ this.contenu.getText());

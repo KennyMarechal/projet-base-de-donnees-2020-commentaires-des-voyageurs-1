@@ -2,6 +2,8 @@ package vue;
 
 import java.sql.Timestamp;
 
+import org.controlsfx.control.Rating;
+
 import com.sun.media.jfxmedia.logging.Logger;
 
 import controleur.Controleur;
@@ -27,6 +29,7 @@ public class VueAjouterCommentaire extends Vue{
 	protected TextField textFieldTitreCommentaire =(TextField) lookup("#vue-ajouter-commentaire-textField-titre");
 	protected TextField textFieldNomCommentaire =(TextField) lookup("#vue-ajouter-commentaire-textField-nom");
 	protected TextArea textAreaCommentire = (TextArea)lookup("#vue-ajouter-commentaire-textArea-commentaire");
+	protected Rating ratingNoteCommentaire = (Rating)lookup("#vue-ajouter-commentaire-note");
 	
 	private VueAjouterCommentaire() {
 		super("vue_ajouter_commentaire.fxml");
@@ -64,6 +67,7 @@ public class VueAjouterCommentaire extends Vue{
 		commentaire.setAuteur(textFieldNomCommentaire.getText());
 		commentaire.setContenu(textAreaCommentire.getText());
 		commentaire.setDate(new Timestamp(System.currentTimeMillis()));
+		commentaire.setNote((int) ratingNoteCommentaire.getRating());
 				
 		return commentaire;
 	}

@@ -12,6 +12,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.Rating?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -25,7 +26,7 @@
               <rowConstraints>
                 <RowConstraints maxHeight="110.0" minHeight="0.0" prefHeight="70.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="110.0" minHeight="0.0" prefHeight="70.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="365.0" minHeight="10.0" prefHeight="280.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="300.0" minHeight="10.0" prefHeight="280.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <Label prefHeight="70.0" prefWidth="150.0" text="TITRE :" wrapText="true">
@@ -43,7 +44,7 @@
                         <Font name="Times New Roman Bold Italic" size="25.0" />
                      </font>
                   </Label>
-                  <TextArea id="vue-ajouter-commentaire-textArea-commentaire" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextArea id="vue-ajouter-commentaire-textArea-commentaire" prefHeight="135.0" prefWidth="173.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <TextField id="vue-ajouter-commentaire-textField-nom" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <TextField id="vue-ajouter-commentaire-textField-titre" GridPane.columnIndex="1" />
                </children>
@@ -60,6 +61,7 @@
                   <Font size="36.0" />
                </font>
             </Label>
+            <Rating id="vue-ajouter-commentaire-note" fx:id="vueAJouterCommentaireNot" layoutX="212.0" layoutY="636.0" prefWidth="206.0" rating="0.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" />
          </children>
       </Pane>
    </children>
