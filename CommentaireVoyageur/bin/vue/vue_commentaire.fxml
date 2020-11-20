@@ -11,27 +11,27 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" stylesheets="@decoration/commentaire.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView id="VueAjouterCommentaireImage" fitHeight="165.0" fitWidth="493.0" layoutX="54.0" layoutY="14.0">
+      <ImageView id="VueAjouterCommentaireImage" fitHeight="204.0" fitWidth="600.0">
          <image>
-            <Image url="@../../image/image_bateau.PNG" />
+            <Image url="@../../image/croisieresdereve.jpg" />
          </image>
       </ImageView>
-      <Label id="vue-commentaire-titre" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="56.0" layoutY="185.0" prefHeight="85.0" prefWidth="493.0" text="TITRE COMMENTAIRE" textAlignment="JUSTIFY" textFill="#db0d0d" wrapText="true">
+      <Label id="vue-commentaire-titre" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="56.0" layoutY="204.0" prefHeight="85.0" prefWidth="493.0" text="TITRE COMMENTAIRE" textAlignment="JUSTIFY" textFill="#db0d0d" wrapText="true">
          <font>
             <Font size="26.0" />
          </font>
       </Label>
-      <Label id="vue-commentaire-nom-voyageur" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="281.0" layoutY="271.0" prefHeight="27.0" prefWidth="266.0" text="De : Nom voyageur" textAlignment="RIGHT" textFill="#db0d0d" wrapText="true">
+      <Label id="vue-commentaire-nom-voyageur" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="281.0" layoutY="271.0" prefHeight="27.0" prefWidth="266.0" text="De : Nom voyageur" textAlignment="RIGHT" wrapText="true">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label id="vue-commentaire-date-commentaire" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="281.0" layoutY="298.0" prefHeight="27.0" prefWidth="266.0" text="Le : Date commentaire" textAlignment="RIGHT" textFill="#db0d0d" wrapText="true">
+      <Label id="vue-commentaire-date-commentaire" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="281.0" layoutY="298.0" prefHeight="27.0" prefWidth="266.0" text="Le : Date commentaire" textAlignment="RIGHT" wrapText="true">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label id="vue-commentaire-commentaire-voyageur" alignment="TOP_LEFT" layoutX="56.0" layoutY="356.0" prefHeight="286.0" prefWidth="493.0" style="-fx-border-color: black;" text="Commentaire du voyageur " textAlignment="JUSTIFY" textFill="#db0d0d" wrapText="true">
+      <Label id="vue-commentaire-commentaire-voyageur" alignment="TOP_LEFT" layoutX="56.0" layoutY="356.0" prefHeight="286.0" prefWidth="493.0" style="-fx-border-color: black;" text="Commentaire du voyageur " textAlignment="JUSTIFY" wrapText="true">
          <font>
             <Font size="18.0" />
          </font>
@@ -39,7 +39,7 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </Label>
-      <Button id="vue-commentaire-action-retour" fx:id="vueAccueilActionLaisserCommentaire" layoutX="237.0" layoutY="658.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="127.0" text="BACK" />
+      <Button id="vue-commentaire-action-retour" fx:id="vueAccueilActionLaisserCommentaire" layoutX="237.0" layoutY="658.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="127.0" text="Retour" />
       <Rating id="vue-commentaire-note" fx:id="vueCommentaireNote" focusTraversable="false" layoutX="74.0" layoutY="282.0" mouseTransparent="true" prefHeight="27.0" prefWidth="167.0" rating="0.0" scaleX="1.2" scaleY="1.2" scaleZ="1.2" />
    </children>
 </Pane>

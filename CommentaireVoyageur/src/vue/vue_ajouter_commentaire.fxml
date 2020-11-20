@@ -18,7 +18,7 @@
    <children>
       <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0">
          <children>
-            <GridPane layoutX="34.0" layoutY="262.0" prefHeight="342.0" prefWidth="532.0">
+            <GridPane layoutX="34.0" layoutY="266.0" prefHeight="342.0" prefWidth="532.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="281.59996337890624" minWidth="10.0" prefWidth="220.0000030517578" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="500.0" minWidth="10.0" prefWidth="311.19999694824224" />
@@ -31,37 +31,42 @@
                <children>
                   <Label prefHeight="70.0" prefWidth="150.0" text="TITRE :" wrapText="true">
                      <font>
-                        <Font name="Times New Roman Bold Italic" size="25.0" />
+                        <Font name="System Bold Italic" size="25.0" />
                      </font>
                   </Label>
                   <Label prefHeight="70.0" prefWidth="150.0" text="NOM  : " GridPane.rowIndex="1">
                      <font>
-                        <Font name="Times New Roman Bold Italic" size="25.0" />
+                        <Font name="System Bold Italic" size="25.0" />
                      </font>
                   </Label>
                   <Label alignment="TOP_LEFT" prefHeight="280.0" prefWidth="224.0" text="COMMENTAIRE :" GridPane.rowIndex="2">
                      <font>
-                        <Font name="Times New Roman Bold Italic" size="25.0" />
+                        <Font name="System Bold Italic" size="25.0" />
                      </font>
                   </Label>
                   <TextArea id="vue-ajouter-commentaire-textArea-commentaire" prefHeight="135.0" prefWidth="173.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <TextField id="vue-ajouter-commentaire-textField-nom" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <TextField id="vue-ajouter-commentaire-textField-titre" GridPane.columnIndex="1" />
+                  <ImageView id="VueAjouterCommentaireImage" fitHeight="110.0" fitWidth="160.0" GridPane.rowIndex="2">
+                     <image>
+                        <Image url="@../../image/baleine.png" />
+                     </image>
+                  </ImageView>
                </children>
             </GridPane>
-            <Button id="vue-ajouter-commentaire-action-envoyer" fx:id="VueAjouterCommentaireActionEnvoyer" layoutX="330.0" layoutY="705.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="130.0" text="Envoyer" />
-            <ImageView id="VueAjouterCommentaireImage" fitHeight="160.0" fitWidth="493.0" layoutX="71.0" layoutY="14.0">
+            <Button id="vue-ajouter-commentaire-action-envoyer" fx:id="VueAjouterCommentaireActionEnvoyer" layoutX="300.0" layoutY="699.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="130.0" text="Envoyer" />
+            <ImageView id="VueAjouterCommentaireImage" fitHeight="204.0" fitWidth="600.0">
                <image>
-                  <Image url="@../../../CommentaireVoyageur/image/image_bateau.PNG" />
+                  <Image url="@../../image/croisieresdereve.jpg" />
                </image>
             </ImageView>
-            <Button id="vue-ajouter-commentaire-action-retour" fx:id="VueAjouterCommentaireActionRetour" layoutX="152.0" layoutY="705.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="130.0" text="BACK" />
-            <Label layoutX="121.0" layoutY="193.0" text="Ajouter un Commentaire" textFill="#db0d0d">
+            <Button id="vue-ajouter-commentaire-action-retour" fx:id="VueAjouterCommentaireActionRetour" layoutX="140.0" layoutY="699.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="130.0" text="Retour" />
+            <Label layoutX="106.0" layoutY="204.0" text="Ajouter un commentaire" textFill="#db0d0d">
                <font>
                   <Font size="36.0" />
                </font>
             </Label>
-            <Rating id="vue-ajouter-commentaire-note" fx:id="vueAJouterCommentaireNot" layoutX="212.0" layoutY="636.0" prefWidth="206.0" rating="0.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" />
+            <Rating id="vue-ajouter-commentaire-note" fx:id="vueAJouterCommentaireNot" layoutX="194.0" layoutY="624.0" prefWidth="206.0" rating="0.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" />
          </children>
       </Pane>
    </children>

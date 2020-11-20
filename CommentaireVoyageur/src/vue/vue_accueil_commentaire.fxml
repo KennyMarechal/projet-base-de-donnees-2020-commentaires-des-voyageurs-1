@@ -48,36 +48,49 @@
    <children>
       <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" stylesheets="@decoration/commentaire.css">
          <children>
-            <ImageView id="VueAjouterCommentaireImage" fitHeight="159.0" fitWidth="493.0" layoutX="54.0" layoutY="110.0">
+            <ImageView id="VueAjouterCommentaireImage" fitHeight="204.0" fitWidth="600.0">
                <image>
-                  <Image url="@../../image/image_bateau.PNG" />
+                  <Image url="@../../image/croisieresdereve.jpg" />
                </image>
             </ImageView>
-            <Label layoutX="77.0" layoutY="46.0" text="Bienvenue sur notre bateau " textFill="#db0d0d">
+            <Label layoutX="77.0" layoutY="203.0" text="Bienvenue sur notre bateau " textFill="#dd0f0f">
                <font>
                   <Font size="36.0" />
                </font>
             </Label>
-            <Label layoutX="54.0" layoutY="262.0" prefHeight="74.0" prefWidth="493.0" text="Nous vous remercions de votre confiance. Veuillez prendre quelques minutes pour nous donner votre impression." textAlignment="CENTER" textFill="#db0d0d" wrapText="true">
+            <Label layoutX="54.0" layoutY="256.0" prefHeight="74.0" prefWidth="493.0" text="Nous vous remercions de votre confiance. Veuillez prendre quelques minutes pour nous donner votre impression." textAlignment="CENTER" wrapText="true">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button id="vue-accueil-action-laisser-commentaire" fx:id="vueAccueilActionLaisserCommentaire" layoutX="90.0" layoutY="342.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="421.0" text="Laisser nous un commentaire" />
-            <Label layoutX="168.0" layoutY="400.0" prefHeight="39.0" prefWidth="264.0" text="Partager l'expérience Croisière !" textFill="#db0d0d">
+            <Button id="vue-accueil-action-laisser-commentaire" fx:id="vueAccueilActionLaisserCommentaire" layoutX="90.0" layoutY="330.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="421.0" text="Laissez-nous un commentaire" textFill="#37da00">
                <font>
                   <Font size="18.0" />
+               </font></Button>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="70.0" layoutY="400.0" prefHeight="39.0" prefWidth="474.0" text="Partagez votre expérience des Croisières Poisson !">
+               <font>
+                  <Font size="20.0" />
                </font>
             </Label>
-            <VBox id="liste-item" layoutX="59.0" layoutY="453.0" prefHeight="257.0" prefWidth="493.0">
+            <VBox id="liste-item" layoutX="35.0" layoutY="439.0" prefHeight="266.0" prefWidth="532.0">
                <children>
-                  <ListView id="vue-accueil-listView" fx:id="vueAccueilListView" prefHeight="302.0" prefWidth="493.0" />
+                  <ListView id="vue-accueil-listView" fx:id="vueAccueilListView" prefHeight="302.0" prefWidth="532.0" />
                </children></VBox>
-            <MenuButton id="vue-accueil-menu-options" fx:id="vueAccueilMenuOptions" layoutX="21.0" layoutY="14.0" mnemonicParsing="false">
+            <MenuButton id="vue-accueil-menu-options" fx:id="vueAccueilMenuOptions" layoutX="14.0" layoutY="217.0" mnemonicParsing="false">
               <items>
                 <MenuItem id="vue-accueil-action-synchroniser" fx:id="vueAccueilActionSynchroniser" mnemonicParsing="false" text="Synchroniser" />
               </items>
             </MenuButton>
+            <ImageView id="VueAjouterCommentaireImage" fitHeight="40.0" fitWidth="40.0" layoutX="34.0" layoutY="400.0">
+               <image>
+                  <Image url="@../../image/tortue.png" />
+               </image>
+            </ImageView>
+            <ImageView id="VueAjouterCommentaireImage" fitHeight="40.0" fitWidth="40.0" layoutX="536.0" layoutY="400.0">
+               <image>
+                  <Image url="@../../image/tortue.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
    </children>
