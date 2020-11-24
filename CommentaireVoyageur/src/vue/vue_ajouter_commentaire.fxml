@@ -66,7 +66,7 @@
                   <Font size="36.0" />
                </font>
             </Label>
-            <Rating id="vue-ajouter-commentaire-note" fx:id="vueAJouterCommentaireNot" layoutX="194.0" layoutY="624.0" prefWidth="206.0" rating="0.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" />
+            <Rating id="vue-ajouter-commentaire-note" fx:id="vueAJouterCommentaireNot" layoutX="194.0" layoutY="624.0" prefWidth="206.0" rating="3.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" />
          </children>
       </Pane>
    </children>
