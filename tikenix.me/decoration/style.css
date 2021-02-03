@@ -1,0 +1,146 @@
+header{
+	height:200px;
+	margin: 0;
+	width: 100%;
+	background-image: url("../image/croisieresdereve.jpg");
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+html{
+	width: 100%;
+	height: 100vh;
+	background-color: #2C3E50;
+	margin:0;
+	padding:0;
+}
+
+#contenu{
+	margin-left: 30%;
+	margin-right: 30%;
+}
+
+.bloc-commentaire{
+	margin-top: 10px;
+	border-bottom: 2px solid #F4F6F7;
+	animation-name: appararition;
+	animation-duration: 4s;
+}
+
+@keyframes appararition {
+	from {opacity: 0;
+	transform: translateY(-100px);}
+	to {opacity: 1;
+	transform: translateY(0px);}
+}
+
+.auteur{
+	margin: 3px;
+	text-align: left;
+	color: #F4F6F7;
+}
+
+.commentaire{
+	margin: 3px;
+	color: #F4F6F7;
+}
+
+.titre{
+	margin: 3px;
+	color: #F4F6F7;
+}
+
+.logo-right{
+	height: 50px;
+	position:absolute;
+	z-index:1;
+	right:0px;
+	bottom: 200px;
+	position: fixed;
+}
+
+.baleine-droite{
+	width: 100%;
+	max-width: 375px;
+	height: auto;
+	transform: scaleX(-1);
+	opacity:0.85;
+}
+
+.logo-left{
+	height: 50px;
+	position:absolute;
+	z-index:1;
+	left:0px;
+	bottom: 200px;
+	position: fixed;
+}
+
+@keyframes pulse{
+	to{
+		box-shadow: 0 0 0 18px rgba(0, 0, 0, 0.01);
+	}
+}
+
+.baleine-gauche{
+	width: 100%;
+	max-width: 375px;
+	height: auto;
+	opacity:0.85;
+}
+
+.pagination {
+	list-style: none;
+	z-index:1;
+	justify-content: center;
+	display:flex;
+}
+
+.page-item{
+	list-style: none;
+	padding: 5px;
+}
+
+.page-item a{
+	text-decoration: none;
+	background-color: #F4F6F7;
+	padding: 5px;
+	color: #2C3E50;
+}
+
+.page-item a:hover{
+	background-color: rgb(102, 136, 187);
+	color: #F4F6F7;
+}
+
+.active a{
+	background-color: rgb(102, 136, 187);
+	color: #2C3E50;
+}
+
+@media only screen and (max-width: 600px) {
+	#contenu  {
+		margin: 0;
+		max-height: 80%;
+	}
+	header {
+		height:100px;
+		background-image: url("../image/bateau.png");
+		background-position: center;
+	}
+	.baleine-droite, .baleine-gauche{
+		max-width: 0px;
+	}
+	.logo-left, .logo-right{
+		bottom: 10px;
+	}
+	.bloc-commentaire{
+		margin: 0;
+		font-size: small;
+	}
+	.pagination {
+		justify-content: center;
+		margin: auto 0;
+		width: 80%;
+	}
+}
