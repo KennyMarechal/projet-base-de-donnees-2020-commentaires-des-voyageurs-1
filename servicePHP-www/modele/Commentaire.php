@@ -2,7 +2,7 @@
 
 class Commentaire{
 
-    public static $filtre = array(
+    public static $filtres = array(
         'id' => FILTER_VALIDATE_INT,
         'titre' => FILTER_SANITIZE_STRING,
         'contenu' => FILTER_SANITIZE_STRING,
@@ -20,6 +20,13 @@ class Commentaire{
 
     function __construct($tableau){
         $tableau = filter_var_array($tableau, Commentaire::$filtres);
+
+		$this->setId($tableau['id']);
+        $this->setTitre($tableau['titre']);
+        $this->setContenu($tableau['contenu']);
+        $this->setAuteur($tableau['auteur']);
+        $this->setDate($tableau['date']);
+        $this->setNote($tableau['note']);
     }
 
     public function getId()
